@@ -11,8 +11,6 @@ namespace Blitz {
         bool IsVisible();
         void SetVisible(bool visible);
 
-        void Render(bool update);
-
     private:
         bool m_visible;
 

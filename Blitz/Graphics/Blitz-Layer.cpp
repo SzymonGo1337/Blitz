@@ -14,8 +14,4 @@ namespace Blitz {
     void Layer::SetVisible(bool visible) {
         m_visible = visible;
     }
-
-    void Layer::Render(bool update) {
-        
-    }
 }
