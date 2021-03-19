@@ -1,5 +1,7 @@
 # Blitz
 
+![alt text](https://github.com/SzymonGo1337/Blitz/blob/main/icon.png?raw=true)
+
 Blitz jest Framework'iem który ma na celu ułatwiać tworzenie aplikacji czy gier w C++'ie z użyciem OpenGL'a.
 
 ## Instalacja
