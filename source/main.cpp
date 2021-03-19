@@ -2,7 +2,7 @@
 
 char* vertexShader = R"(#version 330 core
 layout (location = 0) in vec3 a_Pos;
-layout (location = 1) in vec2 a_TexCoord;
+layout (location = 2) in vec2 a_TexCoord;
     
 out vec2 v_TexCoord;
 
@@ -69,13 +69,8 @@ int main(int argv, char** argc) {
     #endif
     glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
 
-    GLFWwindow* window = glfwCreateWindow(1280, 720, "Blitz Engine", BLITZ_NULLPTR, BLITZ_NULLPTR);
-    if(!window) {
-        std::cerr << "GLFW Window Init Error!\n";
-        glfwTerminate();
-        return BLITZ_NULL;
-    }
-    glfwMakeContextCurrent(window);
+    Blitz::Window window;
+    window.SetIcon("icon.png");
 
     gladLoadGL();
     BlitzGLCall(glViewport(0, 0, 1280, 720));
@@ -84,7 +79,7 @@ int main(int argv, char** argc) {
     ImGui::CreateContext();
     ImGuiIO &io = ImGui::GetIO();
 
-    ImGui_ImplGlfw_InitForOpenGL(window, BLITZ_TRUE);
+    ImGui_ImplGlfw_InitForOpenGL(window.GetWindow(), BLITZ_TRUE);
     ImGui_ImplOpenGL3_Init("#version 330 core");
 
     ImGui::StyleColorsDark();
@@ -107,18 +102,23 @@ int main(int argv, char** argc) {
     BlitzGLCall(glEnableVertexAttribArray(2));
     BlitzGLCall(glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(6 * sizeof(float))));
 
+    Blitz::Texture texture;
+    texture.LoadTexture("banner.png");
+
     Blitz::Camera camera;
 
-    transform = glm::scale(transform, glm::vec3(0.2f, 0.2f, 0.2f));
+    transform = glm::scale(transform, glm::vec3(0.6f, 0.2f, 0.2f));
 
     Blitz::uint u_viewProjection = shader.GetUniformLocation("u_viewProjection");
     Blitz::uint u_transform = shader.GetUniformLocation("u_transform");
 
-    while(!glfwWindowShouldClose(window)) {
-        BlitzCheckKeys(window, camera);
+    float color[3] = { 42.0f, 135.0f, 212.0f };
+
+    while(window.IsOpen()) {
+        BlitzCheckKeys(window.GetWindow(), camera);
         
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-        glClearColor(0.2f, 0.3f, 0.5f, 1.0f);
+        glClearColor(color[0], color[1], color[2], 1.0f);
 
         ImGui_ImplOpenGL3_NewFrame();
         ImGui_ImplGlfw_NewFrame();
@@ -130,21 +130,21 @@ int main(int argv, char** argc) {
 
         BlitzGLCall(glUniformMatrix4fv(u_transform, 1, BLITZ_FALSE, glm::value_ptr(transform)));
 
+        texture.Bind();
         vao.Bind();
         BlitzGLCall(glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0));
         vao.Unbind();
+        texture.Unbind();
 
         ImGui::Begin("Blitz ImGui Window");
-        if(ImGui::Button("YES")) {
-            std::cout << "YES\n";
-        }
+        ImGui::ColorEdit3("Background color", color);
         ImGui::End();
 
 
         ImGui::Render();
         ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
-        glfwSwapBuffers(window);
+        window.Display();
         glfwPollEvents();
     }
 

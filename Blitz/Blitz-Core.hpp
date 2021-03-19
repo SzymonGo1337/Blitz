@@ -53,7 +53,9 @@ namespace Blitz {
     #define BLITZ_DEBUG
 #endif
 
+#include "Blitz-Window.hpp"
 #include "Graphics/Blitz-Shader.hpp"
+#include "Graphics/Blitz-Texture.hpp"
 #include "Graphics/Blitz-Camera.hpp"
 #include "Graphics/Blitz-VertexArray.hpp"
 #include "Graphics/Blitz-VertexBuffer.hpp"

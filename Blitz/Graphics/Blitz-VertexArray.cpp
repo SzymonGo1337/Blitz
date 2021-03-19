@@ -2,8 +2,8 @@
 
 namespace Blitz {
     VertexArray::VertexArray() {
-        glGenVertexArrays(1, &m_vao);
-        glBindVertexArray(m_vao);
+        BlitzGLCall(glGenVertexArrays(1, &m_vao));
+        BlitzGLCall(glBindVertexArray(m_vao));
     }
 
     VertexArray::~VertexArray() {
@@ -11,11 +11,11 @@ namespace Blitz {
     }
 
     void VertexArray::Bind() {
-        glBindVertexArray(m_vao);
+        BlitzGLCall(glBindVertexArray(m_vao));
     }
 
     void VertexArray::Unbind() {
-        glBindVertexArray(BLITZ_NULL);
+        BlitzGLCall(glBindVertexArray(BLITZ_NULL));
     }
 
     uint& VertexArray::GetVao() {

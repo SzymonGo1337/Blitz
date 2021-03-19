@@ -12,10 +12,14 @@ add_subdirectory(thirdparty/imgui-cmake)
 set(Blitz
     Blitz/Blitz-Core.hpp
     Blitz/Blitz-Core.cpp
-    Blitz/Graphics/Blitz-Shader.hpp
-    Blitz/Graphics/Blitz-Shader.cpp
+    Blitz/Blitz-Window.hpp
+    Blitz/Blitz-Window.cpp
     Blitz/Graphics/Blitz-Camera.hpp
     Blitz/Graphics/Blitz-Camera.cpp
+    Blitz/Graphics/Blitz-Shader.hpp
+    Blitz/Graphics/Blitz-Shader.cpp
+    Blitz/Graphics/Blitz-Texture.hpp
+    Blitz/Graphics/Blitz-Texture.cpp
     Blitz/Graphics/Blitz-VertexArray.hpp
     Blitz/Graphics/Blitz-VertexArray.cpp
     Blitz/Graphics/Blitz-VertexBuffer.hpp
