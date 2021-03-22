@@ -1,9 +1,15 @@
 #include "Blitz-Camera.hpp"
 
 namespace Blitz {
-    Camera::Camera(CameraProjection usage) {
+    Camera::Camera(glm::vec4 parameters, CameraProjection usage) {
         m_view = glm::mat4x4(1);
-        m_projection = glm::ortho(-1.0f * 16.0f / 9.0f * 0.5f, 1.0f * 16.0f / 9.0f * 0.5f, -1.0f * 0.5f, 1.0f * 0.5f, -1.0f, 1.0f);
+        if(usage == CameraProjection::ORTHOGRAPHIC) {
+            m_projection = glm::ortho(parameters.x, parameters.y, parameters.z, parameters.w, -1.0f, 1.0f);
+            // m_projection = glm::ortho(-1.0f * 16.0f / 9.0f * 0.5f, 1.0f * 16.0f / 9.0f * 0.5f, -1.0f * 0.5f, 1.0f * 0.5f, -1.0f, 1.0f);
+        } else if(usage == CameraProjection::PROJECTION) {
+            m_projection = glm::perspective(parameters.x, parameters.y, parameters.z, parameters.w);
+            // m_projection = glm::perspective(glm::radians(90.0f), (float)1280.0f / (float)720.0f, 0.001f, 1000.0f);
+        }
     }
         
     Camera::~Camera() {

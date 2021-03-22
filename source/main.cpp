@@ -1,4 +1,5 @@
 #include <Blitz/Blitz-Core.hpp>
+#include <Blitz/Blitz-System.hpp>
 
 char* vertexShader = R"(#version 330 core
 layout (location = 0) in vec3 a_Pos;
@@ -56,28 +57,16 @@ void BlitzCheckKeys(GLFWwindow* window, Blitz::Camera& camera) {
 glm::mat4 transform = glm::mat4(1);
 
 int main(int argv, char** argc) {
-    if(!glfwInit()) {
-        std::cerr << "GLFW Init Error!\n";
-        return BLITZ_NULL;
-    }
-    
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-    #if defined(BLITZ_APPLE)
-        glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GLFW_TRUE);
-    #endif
-    glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
-
     Blitz::Window window;
     window.SetIcon("icon.png");
 
     gladLoadGL();
-    BlitzGLCall(glViewport(0, 0, 1280, 720));
+    BlitzGLCall(glViewport(0, 0, (GLsizei)window.GetSize().x, (GLsizei)window.GetSize().y));
 
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
     ImGuiIO &io = ImGui::GetIO();
+    io.IniFilename = NULL;
 
     ImGui_ImplGlfw_InitForOpenGL(window.GetWindow(), BLITZ_TRUE);
     ImGui_ImplOpenGL3_Init("#version 330 core");
@@ -114,11 +103,19 @@ int main(int argv, char** argc) {
 
     float color[3] = { 42.0f, 135.0f, 212.0f };
 
+    Blitz::File file;
+    file.Load("test.txt");
+
+    Blitz::Clock m_clock;
+
     while(window.IsOpen()) {
+        Blitz::uint time = m_clock.Get().AsMilliseconds();
+        std::cout << time / 1000 << "\n" << time << "\n";
+
         BlitzCheckKeys(window.GetWindow(), camera);
         
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-        glClearColor(color[0], color[1], color[2], 1.0f);
+        BlitzGLCall(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
+        BlitzGLCall(glClearColor(color[0], color[1], color[2], 1.0f));
 
         ImGui_ImplOpenGL3_NewFrame();
         ImGui_ImplGlfw_NewFrame();
@@ -136,8 +133,26 @@ int main(int argv, char** argc) {
         vao.Unbind();
         texture.Unbind();
 
+        ImGui::SetNextWindowPos(ImVec2(25.0f, 25.0f));
+        ImGui::SetNextWindowSize(ImVec2(400.0f, 100.0f));
         ImGui::Begin("Blitz ImGui Window");
+        if(ImGui::BeginMainMenuBar()) {
+            if(ImGui::BeginMenu("Blitz")) {
+                if(ImGui::MenuItem("Blitz")) {
+                    std::cout << "Blitz\n";
+                }
+                ImGui::EndMenu();
+            }
+            if(ImGui::BeginMenu("File")) {
+                if(ImGui::MenuItem("New")) {
+                    std::cout << "New\n";
+                }
+                ImGui::EndMenu();
+            }
+            ImGui::EndMainMenuBar();
+        }
         ImGui::ColorEdit3("Background color", color);
+        ImGui::Text("Time: %f", (float)time);
         ImGui::End();
 
 

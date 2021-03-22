@@ -1,6 +1,8 @@
 #include "Blitz-Shader.hpp"
 
 namespace Blitz {
+    Shader::Shader() { }
+
     Shader::Shader(const char* vSS, const char* fSS) {
         uint vS = glCreateShader(GL_VERTEX_SHADER);
         glShaderSource(vS, 1, &vSS, BLITZ_NULL);

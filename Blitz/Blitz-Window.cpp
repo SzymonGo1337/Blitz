@@ -10,6 +10,19 @@ namespace Blitz {
     }
 
     void Window::Create(glm::vec2 size, const char* title) {
+        if(!glfwInit()) {
+            std::cerr << "GLFW Init Error!\n";
+            Blitz::Exit();
+        }
+    
+        glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+        glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+        glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+        #if defined(BLITZ_APPLE)
+            glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GLFW_TRUE);
+        #endif
+        glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
+
         m_window = glfwCreateWindow((int)size.x, (int)size.y, title, BLITZ_NULLPTR, BLITZ_NULLPTR);
         if(m_window == BLITZ_NULL) {
             std::cout << "GLFW Window Init Error!\n";
@@ -39,5 +52,11 @@ namespace Blitz {
 
     GLFWwindow* Window::GetWindow() {
         return m_window;
+    }
+
+    glm::vec2 Window::GetSize() {
+        int width, height;
+        glfwGetWindowSize(m_window, &width, &height);
+        return glm::vec2(width, height);
     }
 };

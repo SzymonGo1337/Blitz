@@ -1,7 +1,6 @@
 #pragma once
 
 #include "../Blitz-Core.hpp"
-#include "Blitz-VertexBuffer.hpp"
 
 namespace Blitz {
     enum class IndexBufferUsage {

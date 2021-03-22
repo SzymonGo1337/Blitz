@@ -14,6 +14,14 @@ set(Blitz
     Blitz/Blitz-Core.cpp
     Blitz/Blitz-Window.hpp
     Blitz/Blitz-Window.cpp
+    Blitz/Blitz-System.hpp
+    Blitz/Blitz-System.cpp
+    Blitz/Systems/Blitz-File.hpp
+    Blitz/Systems/Blitz-File.cpp
+    Blitz/Systems/Blitz-Time.hpp
+    Blitz/Systems/Blitz-Time.cpp
+    Blitz/Systems/Blitz-Clock.hpp
+    Blitz/Systems/Blitz-Clock.cpp
     Blitz/Graphics/Blitz-Camera.hpp
     Blitz/Graphics/Blitz-Camera.cpp
     Blitz/Graphics/Blitz-Shader.hpp

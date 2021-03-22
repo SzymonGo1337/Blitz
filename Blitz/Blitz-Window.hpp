@@ -15,6 +15,7 @@ namespace Blitz {
         void SetIcon(const char* filename);
         bool IsOpen();
         GLFWwindow* GetWindow();
+        glm::vec2 GetSize();
 
     private:
         GLFWwindow* m_window;

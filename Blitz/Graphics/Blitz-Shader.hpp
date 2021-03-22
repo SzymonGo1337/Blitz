@@ -5,6 +5,7 @@
 namespace Blitz {
     class Shader {
     public:
+        Shader();
         Shader(const char* vSS, const char* fSS);
         ~Shader();
 
