@@ -25,4 +25,8 @@ namespace Blitz {
     uint Texture::DynamicLoad(const char* filename) {
         return SOIL_load_OGL_texture(filename, SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_MULTIPLY_ALPHA);
     }
+
+    uint& Texture::GetData() {
+        return (uint&)m_texture;
+    }
 };

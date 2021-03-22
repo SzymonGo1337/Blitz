@@ -15,14 +15,14 @@ namespace Blitz {
         uint AsMilliseconds();
         uint AsSeconds();
 
-        Time operator=(Time& i) { return Time(i.m_time); }
-        Time operator+(Time& i) { return Time(this->m_time + i.m_time); }
-        Time operator-(Time& i) { return Time(this->m_time - i.m_time); }
-        Time operator*(Time& i) { return Time(this->m_time * i.m_time); }
-        Time operator/(Time& i) { return Time(this->m_time / i.m_time); }
-        Time operator%(Time& i) { return Time(this->m_time % i.m_time); }
-        Time operator^(Time& i) { return Time(this->m_time ^ i.m_time); }
-        Time operator&(Time& i) { return Time(this->m_time & i.m_time); }
+        Time operator=(Time& i) { return Time((uint)i.m_time); }
+        Time operator+(Time& i) { return Time((uint)(this->m_time + i.m_time)); }
+        Time operator-(Time& i) { return Time((uint)(this->m_time - i.m_time)); }
+        Time operator*(Time& i) { return Time((uint)(this->m_time * i.m_time)); }
+        Time operator/(Time& i) { return Time((uint)(this->m_time / i.m_time)); }
+        Time operator%(Time& i) { return Time((uint)(this->m_time % i.m_time)); }
+        Time operator^(Time& i) { return Time((uint)(this->m_time ^ i.m_time)); }
+        Time operator&(Time& i) { return Time((uint)(this->m_time & i.m_time)); }
 
         Time& operator+=(Time& i) {
             this->m_time += i.m_time;
@@ -53,10 +53,9 @@ namespace Blitz {
             return* this;
         }
 
-        Time operator++() { return Time(m_time++); }
-        Time operator--() { return Time(m_time--); }
-
-        Time operator!() { return Time(-m_time); }
+        Time operator++() { return Time((uint)m_time++); }
+        Time operator--() { return Time((uint)m_time--); }
+        Time operator!() { return Time((uint)-m_time); }
 
         bool operator==(Time& i) {
             if(this->m_time == i.m_time)

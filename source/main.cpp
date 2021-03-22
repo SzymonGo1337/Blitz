@@ -66,7 +66,6 @@ int main(int argv, char** argc) {
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
     ImGuiIO &io = ImGui::GetIO();
-    io.IniFilename = NULL;
 
     ImGui_ImplGlfw_InitForOpenGL(window.GetWindow(), BLITZ_TRUE);
     ImGui_ImplOpenGL3_Init("#version 330 core");
@@ -110,7 +109,6 @@ int main(int argv, char** argc) {
 
     while(window.IsOpen()) {
         Blitz::uint time = m_clock.Get().AsMilliseconds();
-        std::cout << time / 1000 << "\n" << time << "\n";
 
         BlitzCheckKeys(window.GetWindow(), camera);
         
@@ -133,8 +131,6 @@ int main(int argv, char** argc) {
         vao.Unbind();
         texture.Unbind();
 
-        ImGui::SetNextWindowPos(ImVec2(25.0f, 25.0f));
-        ImGui::SetNextWindowSize(ImVec2(400.0f, 100.0f));
         ImGui::Begin("Blitz ImGui Window");
         if(ImGui::BeginMainMenuBar()) {
             if(ImGui::BeginMenu("Blitz")) {
@@ -153,6 +149,7 @@ int main(int argv, char** argc) {
         }
         ImGui::ColorEdit3("Background color", color);
         ImGui::Text("Time: %f", (float)time);
+        ImGui::Image((void*)(intptr_t)texture.GetData(), ImVec2(196, 64));
         ImGui::End();
 
 

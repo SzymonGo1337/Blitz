@@ -12,8 +12,9 @@ namespace Blitz {
         void Unbind();
 
         void LoadTexture(const char* filename);
-
         static uint DynamicLoad(const char* filename);
+
+        uint& GetData();
 
     private:
         uint m_texture;
