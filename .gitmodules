@@ -1,15 +1,15 @@
-[submodule "thirdparty/glad-cmake"]
-	path = thirdparty/glad-cmake
+[submodule "Blitz/thirdparty/glad-cmake"]
+	path = Blitz/thirdparty/glad-cmake
 	url = https://github.com/SzymonGo1337/glad-cmake.git
-[submodule "thirdparty/glfw"]
-	path = thirdparty/glfw
+[submodule "Blitz/thirdparty/glfw"]
+	path = Blitz/thirdparty/glfw
 	url = https://github.com/glfw/glfw.git
-[submodule "thirdparty/glm"]
-	path = thirdparty/glm
+[submodule "Blitz/thirdparty/glm"]
+	path = Blitz/thirdparty/glm
 	url = https://github.com/g-truc/glm.git
-[submodule "thirdparty/soil2-cmake"]
-	path = thirdparty/soil2-cmake
+[submodule "Blitz/thirdparty/soil2-cmake"]
+	path = Blitz/thirdparty/soil2-cmake
 	url = https://github.com/Jacob-Tate/soil2-cmake.git
-[submodule "thirdparty/imgui-cmake"]
-	path = thirdparty/imgui-cmake
+[submodule "Blitz/thirdparty/imgui-cmake"]
+	path = Blitz/thirdparty/imgui-cmake
 	url = https://github.com/SzymonGo1337/imgui-cmake.git

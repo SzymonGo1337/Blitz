@@ -1,0 +1,4 @@
+C:/Users/szymon/Desktop/glTemplate/thirdparty/glad/CMakeFiles/glad-generate-files.dir
+C:/Users/szymon/Desktop/glTemplate/thirdparty/glad/CMakeFiles/glad.dir
+C:/Users/szymon/Desktop/glTemplate/thirdparty/glad/CMakeFiles/edit_cache.dir
+C:/Users/szymon/Desktop/glTemplate/thirdparty/glad/CMakeFiles/rebuild_cache.dir
