@@ -4,7 +4,6 @@ project(Blitz-Demo)
 add_subdirectory(Blitz)
 
 add_executable(${PROJECT_NAME}
-    ${Blitz}
     source/main.cpp
 )
 
